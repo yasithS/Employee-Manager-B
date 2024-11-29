@@ -33,7 +33,8 @@
         <mat-form-field style="margin-left: 30px">
             <input (input)="searchEmployee(filter.value)" matInput placeholder="Search Employee here" type="text" #filter>
         </mat-form-field>
-        <button mat-flat-button style="background:black;color:white">Add+</button>
+        <!-- when user clicks add the featurer pops up -->
+        <button (click)="openDialog(employee)" mat-flat-button style="background:black;color:white">Add+</button>
         <br>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
@@ -63,10 +64,25 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
               <td mat-cell *matCellDef="let employee"> {{employee.salary}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef > Edit </th>
+              <td mat-cell *matCellDef="let employee"> <button mat-flat-button (click)="openDialog(employee)" style="height: 30px;width:auto">Edit</button>  </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef > Delete </th>
+              <td mat-cell *matCellDef="let employee"> <button mat-flat-button (click)="deleteEmployee(employee.id)" style="height: 30px;width:auto">Delete</button>  </td>
+            </ng-container>
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let employees; columns: displayedColumns;"></tr>
           </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 15]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+          </mat-paginator>
           
           
 

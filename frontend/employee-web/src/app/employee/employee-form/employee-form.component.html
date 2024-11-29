@@ -1,1 +1,30 @@
-<p>employee-form works!</p>
+<div class="container" style="width:500px">
+    <div>
+        <button mat-icon-button style="float: right; margin:15px">
+            <mat-icon style="color: red;">close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-title>
+        <h3 style="color: red; text-align:center">Employee Form</h3>
+    </div>
+    <div mat-dialog-content>
+        <mat-form-field style="width: 450px;">
+            <input matInput [(ngModel)]="data.name" type="text" placeholder="Enter Name">
+            <mat-icon fontIcon="person" matSuffix></mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 450px;">
+            <input matInput [(ngModel)]="data.email" type="email" placeholder="Enter email">
+            <mat-icon fontIcon="email" matSuffix></mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 450px;">
+            <input matInput [(ngModel)]="data.salary" type="number" placeholder="Enter Salary">
+            <mat-icon fontIcon="salary" matSuffix></mat-icon>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions style="text-align:center; float:right">
+        <button (click)="addOrEditEmployee(data)" mat-flat-button [mat-dialog-close]="data" style="background:green">Submit</button>
+        <button mat-flat-button mat-dialog-close="true" style="background:red;">Cancel</button>
+    </div>
+</div>
